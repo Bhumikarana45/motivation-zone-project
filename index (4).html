@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Motivation Zone</title>
+<meta name="description" content="Motivation Zone: types of motivation, Maslow, Herzberg, how managers motivate, with a narrated video and interactive activities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: a stall on a page. Hero, video, four charts as coloured cards, then the three table activities */
+:root{
+  --bg:#f6f2f4; --fg:#1b1c1f; --muted:#5d5a60; --line:#ddd6da; --ink:#16171a; --paper:#ffffff; --good:#2f7a3d; --bad:#b23a3a;
+  --y:#f6e3a1; --p:#f7c4da; --b:#b9dbf6; --g:#c4ebb7; --v:#dccaf4; --cardfg:#1b1c1f;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Source Serif 4",Georgia,serif; --hand:"Caveat","Comic Sans MS",cursive;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root{--bg:#141316;--fg:#ecebe6;--muted:#a7a3a8;--line:#2d2b30;--ink:#0b0b0d;--paper:#1e1d21;--good:#7fd08e;--bad:#f08a8a;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-text-size-adjust:100%}
+svg,video,img{max-width:100%}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:52px}
+header{display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center}
+header>div{min-width:0}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,9vw,4.6rem);line-height:.95;margin:6px 0 10px}
+h1 span{display:inline-block;background:var(--p);color:var(--cardfg);padding:0 .18em;border-radius:.2em;transform:rotate(-1.5deg)}
+.lede{margin:0;color:var(--muted);max-width:56ch;font-size:1.15rem}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+nav a{font-family:var(--display);font-weight:600;font-size:.85rem;color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+nav a:hover,nav a:focus-visible{border-color:var(--fg)}
+.heroart{background:var(--paper);border-radius:50%;padding:10px;border:1px solid var(--line)}
+.video{background:var(--ink);border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+.video video{width:100%;height:100%;display:block}
+section{display:grid;gap:16px}
+h2{font-family:var(--display);font-weight:800;font-size:1.7rem;margin:0;text-wrap:balance}
+.chartno{font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.intro{margin:0;max-width:65ch}
+.card{background:var(--c);color:var(--cardfg);border-radius:14px;padding:22px;display:grid;grid-template-columns:1fr 260px;gap:22px;align-items:start}
+.card>div{min-width:0}
+.card .fig{background:color-mix(in srgb,#fff 45%,transparent);border-radius:10px;padding:10px}
+.card ul{margin:0;padding-left:1.2em}
+.card p{margin:0 0 8px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.half{background:var(--c);color:var(--cardfg);border-radius:14px;padding:18px 20px}
+.half h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin:0}
+.half .sub{font-family:var(--display);font-weight:600;font-size:.85rem;opacity:.75;margin-bottom:8px}
+.half ul{margin:0;padding-left:1.2em}
+.fig svg{width:100%;height:auto;display:block}
+.key{display:inline-block;background:var(--cardfg);color:var(--c);font-family:var(--display);font-weight:600;font-size:.82rem;padding:4px 10px;border-radius:6px;margin-top:10px}
+/* Maslow interactive */
+.pyr{display:grid;gap:6px;justify-items:center}
+.pyr button{font:600 .95rem var(--display);border:0;border-radius:6px;color:#fff;cursor:pointer;padding:10px 6px;background:var(--cardfg)}
+.pyr button[aria-pressed="true"]{outline:3px solid #fff;outline-offset:-6px}
+.pyr button:focus-visible{outline:3px solid var(--fg)}
+.lvl{background:color-mix(in srgb,#fff 55%,transparent);border-radius:10px;padding:12px 14px;min-height:84px}
+.lvl b{font-family:var(--display)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;list-style:none;padding:0;margin:0}
+.steps li{background:var(--c);color:var(--cardfg);border-radius:12px;padding:14px 12px;display:grid;gap:4px;align-content:start}
+.steps .n{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1}
+.steps b{font-family:var(--display);font-size:1.05rem}
+.steps span{font-size:.92rem}
+/* activities */
+.acts{display:grid;gap:18px}
+.act{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:12px}
+.act h3{font-family:var(--display);font-weight:800;font-size:1.25rem;margin:0}
+.act p{margin:0}
+.btn{font:600 1rem var(--display);background:var(--fg);color:var(--bg);border:0;border-radius:10px;padding:10px 18px;cursor:pointer;justify-self:start}
+.btn:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+.wheelbox{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:center}
+.wheel{position:relative;width:100%;max-width:280px;aspect-ratio:1}
+.wheel svg{width:100%;height:100%;transition:transform 3.2s cubic-bezier(.12,.7,.1,1)}
+.wheel .ptr{position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--fg)}
+.result{font-family:var(--display);font-weight:600;font-size:1.15rem;min-height:3.2em}
+.sit{display:grid;gap:10px}
+.sit .q{font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{font:inherit;font-size:.95rem;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;text-align:left}
+.opts button:hover,.opts button:focus-visible{border-color:var(--fg)}
+.opts button.right{border-color:var(--good);color:var(--good);font-weight:600}
+.opts button.wrong{border-color:var(--bad);color:var(--bad)}
+.fb{font-size:.92rem;color:var(--muted);min-height:1.2em}
+.wallform{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.wallform label{font-family:var(--hand);font-size:1.5rem}
+.wallform input{font:inherit;flex:1 1 200px;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.notes{display:flex;flex-wrap:wrap;gap:12px;padding:6px 0}
+.note{width:136px;min-height:110px;padding:14px 12px;color:#1b1c1f;font-family:var(--hand);font-size:1.35rem;line-height:1.1;box-shadow:0 2px 6px rgba(0,0,0,.15);word-wrap:break-word}
+.quiz{display:grid;gap:14px}
+.qq{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.qq p{margin:0;font-weight:600}
+.score{font-family:var(--display);font-weight:800}
+.final{background:var(--ink);color:#fff;border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 240px;gap:20px;align-items:center}
+.final blockquote{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,4vw,1.8rem);line-height:1.25}
+.final .tag{font-family:var(--hand);font-size:2rem;color:var(--p);margin-top:10px}
+.final .fig{background:#fff;border-radius:12px;padding:8px}
+footer{color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:760px){header{grid-template-columns:1fr}.heroart{max-width:200px}.card{grid-template-columns:1fr}.card .fig{max-width:320px}
+ .pair{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.wheelbox{grid-template-columns:1fr}.final{grid-template-columns:1fr}.final .fig{max-width:240px}}
+@media (prefers-reduced-motion:reduce){.wheel svg{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Principles of Management · Project stall</div>
+      <h1>Motivation <span>Zone</span></h1>
+      <p class="lede">What drives you to give your best? Explore the types of motivation, two famous theories, and what managers can do, then try the activities from our stall.</p>
+      <nav aria-label="Sections"><a href="#types">Types</a><a href="#maslow">Maslow</a><a href="#herzberg">Herzberg</a><a href="#managers">Managers</a><a href="#activities">Activities</a><a href="#quiz">Quiz</a></nav>
+    </div>
+    <div class="heroart fig"><svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Spin the wheel of motivation'><path d='M200 150 L136.5 62.6 A108 108 0 0 1 263.5 62.6 Z' fill='#F6E3A1' stroke='#1b1c1f' stroke-width='3'/><text x='200.0' y='88.04' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>Money</text><path d='M200 150 L263.5 62.6 A108 108 0 0 1 302.7 183.4 Z' fill='#F7C4DA' stroke='#1b1c1f' stroke-width='3'/><text x='263.68274433112344' y='134.30822205665353' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>Recognition</text><path d='M200 150 L302.7 183.4 A108 108 0 0 1 200.0 258.0 Z' fill='#B9DBF6' stroke='#1b1c1f' stroke-width='3'/><text x='239.358100493504' y='209.17177794334648' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>Growth</text><path d='M200 150 L200.0 258.0 A108 108 0 0 1 97.3 183.4 Z' fill='#C4EBB7' stroke='#1b1c1f' stroke-width='3'/><text x='160.641899506496' y='209.17177794334648' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>Team</text><path d='M200 150 L97.3 183.4 A108 108 0 0 1 136.5 62.6 Z' fill='#DCCAF4' stroke='#1b1c1f' stroke-width='3'/><text x='136.31725566887653' y='134.30822205665353' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>Learning</text><circle cx='200' cy='150' r='108' fill='none' stroke='#1b1c1f' stroke-width='5'/><circle cx='200' cy='150' r='14' fill='#1b1c1f'/><path d='M184 22 L216 22 L200 52 Z' fill='#1b1c1f'/><rect x='192' y='258' width='16' height='20' fill='#1b1c1f'/><rect x='140' y='276' width='120' height='10' rx='5' fill='#1b1c1f'/></svg></div>
+  </header>
+
+  <div class="video"><video src="motivation-video.mp4" controls playsinline preload="metadata"></video></div>
+
+  <section>
+    <h2>What is motivation?</h2>
+    <div class="card" style="--c:var(--y)">
+      <div>
+        <p>Motivation is the inner drive that makes people act and work towards goals. In a workplace, motivated people put in more effort, stay longer and work better together.</p>
+        <ul><li>It gives <b>energy</b> to work</li><li>It gives <b>direction</b> towards goals</li><li>It helps people <b>keep going</b> when things get hard</li></ul>
+        <span class="key">Motivated people build better teams</span>
+      </div>
+      <div class="fig"><svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='A rocket rising toward a goal flag'><path d='M40 260 Q160 250 220 170 T360 60' fill='none' stroke='#1b1c1f' stroke-width='3' stroke-dasharray='9 8'/><line x1='340' y1='30' x2='340' y2='110' stroke='#1b1c1f' stroke-width='4'/><path d='M340 30 L380 44 L340 58 Z' fill='#1b1c1f'/><text x='340' y='135' font-family='Helvetica, Arial, sans-serif' font-size='15' font-weight='700' fill='#1b1c1f' text-anchor='middle'>GOAL</text><g transform='translate(190 175) rotate(-40)'><path d='M0 -60 C24 -36 24 10 16 30 H-16 C-24 10 -24 -36 0 -60 Z' fill='#ffffff' stroke='#1b1c1f' stroke-width='4'/><circle cx='0' cy='-18' r='10' fill='#1b1c1f'/><path d='M-16 10 L-34 34 L-16 30 Z M16 10 L34 34 L16 30 Z' fill='#1b1c1f'/><path d='M-10 32 L0 62 L10 32 Z' fill='#1b1c1f' opacity='.5'/></g><g transform='translate(50 262)'><circle r='7' fill='#1b1c1f'/><path d='M-10 22 Q0 6 10 22' fill='#1b1c1f'/></g><g transform='translate(80 262)'><circle r='7' fill='#1b1c1f'/><path d='M-10 22 Q0 6 10 22' fill='#1b1c1f'/></g><g transform='translate(110 262)'><circle r='7' fill='#1b1c1f'/><path d='M-10 22 Q0 6 10 22' fill='#1b1c1f'/></g><text x='200' y='292' font-family='Helvetica, Arial, sans-serif' font-size='13' font-weight='400' fill='#1b1c1f' text-anchor='middle'>energy · direction · persistence</text></svg></div>
+    </div>
+  </section>
+
+  <section id="types">
+    <div class="chartno">Chart 1</div>
+    <h2>Types of motivation</h2>
+    <div class="pair">
+      <div class="half" style="--c:var(--y)"><h3>Intrinsic</h3><div class="sub">Comes from within</div>
+        <ul><li>Personal satisfaction</li><li>Learning new skills</li><li>Achievement</li><li>Self-improvement</li></ul>
+        <p style="margin:10px 0 0">Example: practising a skill because you enjoy getting better at it.</p></div>
+      <div class="half" style="--c:var(--b)"><h3>Extrinsic</h3><div class="sub">Comes from outside</div>
+        <ul><li>Salary</li><li>Bonus</li><li>Promotion</li><li>Awards</li><li>Recognition</li></ul>
+        <p style="margin:10px 0 0">Example: working extra hours to earn a bonus.</p></div>
+    </div>
+    <div class="fig" style="max-width:420px;justify-self:center;background:var(--p);border-radius:12px;padding:10px"><svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Intrinsic heart and extrinsic gift'><circle cx='110' cy='130' r='78' fill='#ffffff' stroke='#1b1c1f' stroke-width='4'/><path d='M110 165 C60 130 75 95 98 98 C106 99 110 106 110 110 C110 106 114 99 122 98 C145 95 160 130 110 165 Z' fill='#1b1c1f'/><text x='110' y='240' font-family='Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1b1c1f' text-anchor='middle'>INTRINSIC</text><text x='110' y='262' font-family='Helvetica, Arial, sans-serif' font-size='13' font-weight='400' fill='#1b1c1f' text-anchor='middle'>from within</text><rect x='232' y='92' width='116' height='88' fill='#ffffff' stroke='#1b1c1f' stroke-width='4'/><rect x='222' y='70' width='136' height='26' fill='#1b1c1f'/><rect x='282' y='70' width='16' height='110' fill='#1b1c1f' opacity='.35'/><path d='M290 70 C260 30 240 55 290 70 C340 55 320 30 290 70 Z' fill='none' stroke='#1b1c1f' stroke-width='4'/><text x='290' y='240' font-family='Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1b1c1f' text-anchor='middle'>EXTRINSIC</text><text x='290' y='262' font-family='Helvetica, Arial, sans-serif' font-size='13' font-weight='400' fill='#1b1c1f' text-anchor='middle'>from outside</text><line x1='200' y1='60' x2='200' y2='250' stroke='#1b1c1f' stroke-width='2' stroke-dasharray='6 6' opacity='.4'/></svg></div>
+  </section>
+
+  <section id="maslow">
+    <div class="chartno">Chart 2</div>
+    <h2>Maslow's hierarchy of needs</h2>
+    <p class="intro">Abraham Maslow (1943) said people are motivated by different needs, starting from basic survival and moving up to personal growth. Once a lower need is met, the next one becomes important.</p>
+    <div class="card" style="--c:var(--b)">
+      <div class="pyr" id="pyr"></div>
+      <div class="lvl" id="lvl" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="herzberg">
+    <div class="chartno">Chart 3</div>
+    <h2>Herzberg's two-factor theory</h2>
+    <p class="intro">Frederick Herzberg (1959) found that the things that stop people being unhappy at work are different from the things that make them truly satisfied.</p>
+    <div class="pair">
+      <div class="half" style="--c:var(--y)"><h3>Hygiene factors</h3><div class="sub">Prevent dissatisfaction</div>
+        <ul><li>Salary</li><li>Job security</li><li>Working conditions</li><li>Company policies</li></ul>
+        <p style="margin:10px 0 0">If these are missing, people feel unhappy. Having them alone does not motivate.</p></div>
+      <div class="half" style="--c:var(--v)"><h3>Motivators</h3><div class="sub">Create satisfaction</div>
+        <ul><li>Achievement</li><li>Recognition</li><li>Responsibility</li><li>Growth</li><li>Advancement</li></ul>
+        <p style="margin:10px 0 0">These make people enjoy their work and give their best.</p></div>
+    </div>
+    <div class="fig" style="max-width:420px;justify-self:center;background:var(--g);border-radius:12px;padding:10px"><svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Herzberg's hygiene shield and motivator star'><line x1='60' y1='160' x2='340' y2='120' stroke='#1b1c1f' stroke-width='6' stroke-linecap='round'/><path d='M200 140 L180 250 H220 Z' fill='#1b1c1f'/><rect x='150' y='250' width='100' height='12' rx='6' fill='#1b1c1f'/><path d='M100 60 L140 74 V108 C140 132 122 146 100 156 C78 146 60 132 60 108 V74 Z' fill='#ffffff' stroke='#1b1c1f' stroke-width='4' transform='translate(-20 -30)'/><path d='M70 105 L80 116 L98 94' fill='none' stroke='#1b1c1f' stroke-width='5' transform='translate(0 -30)'/><text x='80' y='190' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>HYGIENE</text><text x='80' y='208' font-family='Helvetica, Arial, sans-serif' font-size='11' font-weight='400' fill='#1b1c1f' text-anchor='middle'>prevent dissatisfaction</text><polygon points='300.0,16.0 311.2,44.6 341.8,46.4 318.1,65.9 325.9,95.6 300.0,79.0 274.1,95.6 281.9,65.9 258.2,46.4 288.8,44.6' fill='#1b1c1f'/><text x='300' y='150' font-family='Helvetica, Arial, sans-serif' font-size='14' font-weight='700' fill='#1b1c1f' text-anchor='middle'>MOTIVATORS</text><text x='300' y='168' font-family='Helvetica, Arial, sans-serif' font-size='11' font-weight='400' fill='#1b1c1f' text-anchor='middle'>create satisfaction</text></svg></div>
+  </section>
+
+  <section id="managers">
+    <div class="chartno">Chart 4</div>
+    <h2>How managers can motivate</h2>
+    <ol class="steps">
+      <li style="--c:var(--y)"><span class="n">1</span><b>Recognize</b><span>Notice and praise good work.</span></li>
+      <li style="--c:var(--p)"><span class="n">2</span><b>Reward</b><span>Link effort to fair rewards.</span></li>
+      <li style="--c:var(--b)"><span class="n">3</span><b>Support</b><span>Give tools, help and time.</span></li>
+      <li style="--c:var(--g)"><span class="n">4</span><b>Develop</b><span>Offer training and new challenges.</span></li>
+      <li style="--c:var(--v)"><span class="n">5</span><b>Trust</b><span>Give responsibility and freedom.</span></li>
+    </ol>
+  </section>
+
+  <section id="activities">
+    <h2>Try the stall activities</h2>
+    <div class="acts">
+      <div class="act">
+        <h3>1 · Spin the wheel</h3>
+        <p>Spin it, then tell us how this motivates you.</p>
+        <div class="wheelbox">
+          <div class="wheel"><div class="ptr" aria-hidden="true"></div><svg id="wheel" viewBox="0 0 300 300" role="img" aria-label="Motivation wheel"></svg></div>
+          <div style="display:grid;gap:12px"><button class="btn" id="spin" type="button">Spin the wheel</button><div class="result" id="result" aria-live="polite">Tap spin to start.</div></div>
+        </div>
+      </div>
+      <div class="act">
+        <h3>2 · Situation cards</h3>
+        <p>Read the workplace situation and choose how you would motivate the employee.</p>
+        <div class="sit" id="sit"></div>
+        <button class="btn" id="nextsit" type="button">Next card</button>
+      </div>
+      <div class="act">
+        <h3>3 · Motivation wall</h3>
+        <form class="wallform" id="wallform"><label for="wallin">I feel motivated when…</label><input id="wallin" maxlength="60" placeholder="I learn something new" autocomplete="off"><button class="btn" type="submit">Stick it</button></form>
+        <div class="notes" id="notes"></div>
+        <p style="font-size:.85rem;color:var(--muted)">Your notes stay on this device only.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2>Quick quiz</h2>
+    <p class="intro">Tap an answer to check it. <span class="score" id="score"></span></p>
+    <div class="quiz" id="quizbox"></div>
+  </section>
+
+  <section class="final">
+    <div>
+      <blockquote>"A good manager does not just manage people, they understand what motivates them."</blockquote>
+      <div class="tag">Motivated people build better teams ♥</div>
+    </div>
+    <div class="fig"><svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Three teammates and a heart'><g transform='translate(90 170)'><circle cy='-40' r='24' fill='#F6E3A1' stroke='#1b1c1f' stroke-width='3'/><path d='M-40 40 Q0 -12 40 40 Z' fill='#F6E3A1' stroke='#1b1c1f' stroke-width='3'/></g><g transform='translate(200 170)'><circle cy='-40' r='24' fill='#F7C4DA' stroke='#1b1c1f' stroke-width='3'/><path d='M-40 40 Q0 -12 40 40 Z' fill='#F7C4DA' stroke='#1b1c1f' stroke-width='3'/></g><g transform='translate(310 170)'><circle cy='-40' r='24' fill='#B9DBF6' stroke='#1b1c1f' stroke-width='3'/><path d='M-40 40 Q0 -12 40 40 Z' fill='#B9DBF6' stroke='#1b1c1f' stroke-width='3'/></g><path d='M200 95 C180 75 160 90 172 104 L200 128 L228 104 C240 90 220 75 200 95 Z' fill='#F7C4DA' stroke='#1b1c1f' stroke-width='3' transform='translate(0 -70)'/><line x1='40' y1='232' x2='360' y2='232' stroke='#1b1c1f' stroke-width='4'/><text x='200' y='270' font-family='Helvetica, Arial, sans-serif' font-size='18' font-weight='700' fill='#1b1c1f' text-anchor='middle'>BETTER TEAMS</text></svg></div>
+  </section>
+
+  <footer>Motivation Zone · Principles of Management project</footer>
+</div>
+
+<script>
+(function(){
+  const C=["#f6e3a1","#f7c4da","#b9dbf6","#c4ebb7","#dccaf4"];
+  // Maslow pyramid
+  const L=[["Self-actualisation","Reaching your full potential: creativity, personal growth, becoming your best self."],
+           ["Esteem needs","Respect, recognition, status and confidence. At work: praise, titles, appreciation."],
+           ["Social needs","Friendship, belonging and being part of a team. At work: good colleagues, team events."],
+           ["Safety needs","Security and stability. At work: a stable job, safe conditions, health benefits."],
+           ["Physiological needs","Food, water, rest and shelter. At work: fair pay, breaks, a comfortable place to work."]];
+  const pyr=document.getElementById("pyr"),lvl=document.getElementById("lvl");
+  L.forEach(([n,d],i)=>{const b=document.createElement("button");b.type="button";b.id="lvl"+i;b.textContent=n;
+    b.style.width=(42+i*14)+"%";b.style.opacity=(1-i*.13).toFixed(2);
+    b.onclick=()=>{pyr.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");
+      lvl.innerHTML="";const t=document.createElement("b");t.textContent=n;const p=document.createElement("div");p.textContent=d;lvl.append(t,p);};
+    pyr.appendChild(b);});
+  pyr.lastChild.click();
+  const hint=document.createElement("div");hint.style.cssText="font-size:.85rem;opacity:.75;margin-top:8px";hint.textContent="Tap a level of the pyramid to read about it.";lvl.after(hint);
+
+  // Wheel
+  const seg=[["Money & Rewards","How would a bonus or raise change the way you work?"],["Recognition","When did praise last make you work harder?"],
+             ["Career Growth","Where do you want to be in five years?"],["Team & Support","How does a good team help you do better?"],
+             ["Learning & Achievement","What new skill would you love to learn?"]];
+  const w=document.getElementById("wheel");let html="";const cx=150,cy=150,r=146,n=seg.length;
+  seg.forEach(([s],i)=>{const a0=(-90-180/n+i*360/n)*Math.PI/180,a1=a0+2*Math.PI/n,am=(a0+a1)/2;
+    html+=`<path d="M${cx} ${cy} L${(cx+r*Math.cos(a0)).toFixed(1)} ${(cy+r*Math.sin(a0)).toFixed(1)} A${r} ${r} 0 0 1 ${(cx+r*Math.cos(a1)).toFixed(1)} ${(cy+r*Math.sin(a1)).toFixed(1)} Z" fill="${C[i]}" stroke="#1b1c1f" stroke-width="2"/>`;
+    const words=s.split(" ");const tx=cx+r*.6*Math.cos(am),ty=cy+r*.6*Math.sin(am);
+    html+=`<text x="${tx.toFixed(1)}" y="${(ty-(words.length-1)*7).toFixed(1)}" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="13" fill="#1b1c1f">`+words.map((x,k)=>`<tspan x="${tx.toFixed(1)}" dy="${k?14:0}">${x}</tspan>`).join("")+`</text>`;});
+  html+=`<circle cx="150" cy="150" r="146" fill="none" stroke="#1b1c1f" stroke-width="4"/><circle cx="150" cy="150" r="12" fill="#1b1c1f"/>`;
+  w.innerHTML=html;let rot=0,busy=false;const res=document.getElementById("result");
+  const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("spin").onclick=()=>{if(busy)return;busy=true;res.textContent="Spinning…";
+    const pick=Math.floor(Math.random()*n);const target=360-pick*360/n;rot+=1440+((target-rot%360)+360)%360;
+    w.style.transform=`rotate(${rot}deg)`;setTimeout(()=>{res.innerHTML="";const b=document.createElement("div");b.textContent="You landed on: "+seg[pick][0];
+      const q=document.createElement("div");q.style.cssText="font-weight:400;font-family:var(--body);font-size:1rem;margin-top:4px";q.textContent=seg[pick][1];res.append(b,q);busy=false;},reduce?50:3300);};
+
+  // Situation cards
+  const S=[["Riya always finishes her work early and helps others, but nobody has noticed.",["Give her public recognition","Ignore it, it's her job","Give her more routine work"],0,"Recognition is a strong motivator (Herzberg). Noticing good work makes people want to keep it up."],
+           ["Arjun says he is bored doing the same task every day.",["Cut his salary","Give him a new challenge or training","Tell him to be patient"],1,"Growth and learning are intrinsic motivators. A new challenge keeps work interesting."],
+           ["The team's office is too hot and chairs are broken. Everyone is complaining.",["Fix the working conditions","Give a motivational speech","Hold a party"],0,"Working conditions are a hygiene factor. If they are poor, people stay dissatisfied, whatever else you do."],
+           ["Neha is new and feels lonely in the team.",["Leave her alone to settle","Pair her with a buddy and include her","Give her a bonus"],1,"Social needs (Maslow) matter. Feeling part of the team helps people do their best."],
+           ["Kabir has worked hard for 3 years and wants more responsibility.",["Give him a team to lead","Keep him in the same role","Give him a gift card"],0,"Responsibility and advancement are motivators. Trusting people with more makes them grow."]];
+  let si=0;const sit=document.getElementById("sit");
+  function showSit(){const [q,o,a,why]=S[si];sit.innerHTML="";const p=document.createElement("div");p.className="q";p.textContent="Card "+(si+1)+" of "+S.length+": "+q;
+    const os=document.createElement("div");os.className="opts";const fb=document.createElement("div");fb.className="fb";let done=false;
+    o.forEach((t,j)=>{const b=document.createElement("button");b.type="button";b.id="s"+si+"o"+j;b.textContent=t;b.onclick=()=>{if(done)return;done=true;
+      if(j===a){b.classList.add("right");fb.textContent="Good choice. "+why;}else{b.classList.add("wrong");os.children[a].classList.add("right");fb.textContent="Better option highlighted. "+why;}};os.appendChild(b);});
+    sit.append(p,os,fb);}
+  showSit();document.getElementById("nextsit").onclick=()=>{si=(si+1)%S.length;showSit();};
+
+  // Motivation wall
+  const notes=document.getElementById("notes");const seed=["I get appreciated","I learn new things","I achieve my goals","I have good friends","I grow in my career","I feel supported"];
+  let mine=[];try{mine=JSON.parse(localStorage.getItem("mz-notes")||"[]")}catch(e){mine=[]}
+  function draw(){notes.innerHTML="";seed.concat(mine).forEach((t,i)=>{const d=document.createElement("div");d.className="note";d.style.background=C[i%5];d.style.transform=`rotate(${[-3,2,-1,3,-2,1][i%6]}deg)`;d.textContent=t;notes.appendChild(d);});}
+  draw();document.getElementById("wallform").addEventListener("submit",e=>{e.preventDefault();const inp=document.getElementById("wallin");const v=inp.value.trim();if(!v)return;
+    mine.push(v);try{localStorage.setItem("mz-notes",JSON.stringify(mine))}catch(e){}inp.value="";draw();});
+
+  // Quiz
+  const Q=[["Motivation that comes from within is called:",["Extrinsic","Intrinsic","Hygiene"],1,"Intrinsic motivation comes from inside, like enjoying learning."],
+           ["Which is at the base of Maslow's pyramid?",["Esteem","Safety","Physiological needs"],2,"Physiological needs like food, water and rest come first."],
+           ["In Herzberg's theory, salary is a:",["Hygiene factor","Motivator","Self-actualisation need"],0,"Salary prevents dissatisfaction but doesn't create real satisfaction alone."],
+           ["Which is a motivator in Herzberg's theory?",["Company policies","Recognition","Job security"],1,"Recognition creates satisfaction."],
+           ["A bonus is an example of:",["Extrinsic motivation","Intrinsic motivation","Social need"],0,"It comes from outside the person."]];
+  const box=document.getElementById("quizbox"),score=document.getElementById("score");let done=0,right=0;
+  Q.forEach(([q,o,a,why],i)=>{const d=document.createElement("div");d.className="qq";const p=document.createElement("p");p.textContent=(i+1)+". "+q;
+    const os=document.createElement("div");os.className="opts";const fb=document.createElement("div");fb.className="fb";
+    o.forEach((t,j)=>{const b=document.createElement("button");b.type="button";b.id="q"+i+"o"+j;b.textContent=t;b.onclick=()=>{if(d.dataset.done)return;d.dataset.done=1;done++;
+      if(j===a){b.classList.add("right");right++;fb.textContent="Correct. "+why;}else{b.classList.add("wrong");os.children[a].classList.add("right");fb.textContent="Not quite. "+why;}
+      score.textContent="Score: "+right+" / "+Q.length+(done===Q.length?" — done!":"");};os.appendChild(b);});
+    d.append(p,os,fb);box.appendChild(d);});
+})();
+</script>
+</body>
+</html>
